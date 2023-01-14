@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ROCK PAPER SCISSOR</h1>
+</body>
+<script>
+    function getComputerChoice(){
+        let ch = Math.floor(Math.random()*3) +1;
+        if(ch==1){
+            return "rock";
+        }
+        else if(ch==2){
+            return "paper";
+        }
+        if(ch==3){
+            return "scissors";
+        }
+    }
+
+    function playRound(plaSel ,comSel){
+        if(plaSel === "rock"){
+            if(comSel === "rock"){
+                return "draw ho gya bhai";
+            }
+            else if(comSel === "paper"){
+                return "You Lose! paper beats rock";
+            }
+            else if(comSel === "scissors"){
+                return "You Win! rock beats scissors";
+            }
+        }
+        if(plaSel === "paper"){
+            if(comSel === "paper"){
+                return "draw ho gya bhai";
+            }
+            else if(comSel === "scissors"){
+                return "You Lose! scissors beats paper";
+            }
+            else if(comSel === "rock"){
+                return "You Win! paper beats rock";
+            }
+        }
+        if(plaSel === "scissors"){
+            if(comSel === "scissors"){
+                return "draw ho gya bhai";
+            }
+            else if(comSel === "rock"){
+                return "You Lose! rock beats scissors";
+            }
+            else if(comSel === "paper"){
+                return "You Win! scissors beats paper";
+            }
+        }
+    }
+
+    function game(){
+        for(let i =0;i<5;i++){
+            let plaSel = prompt("enter choice");
+            let comSel = getComputerChoice();
+            console.log(playRound(plaSel,comSel));
+
+        }
+    }
+
+    game();
+
+    
+
+
+</script>
+</html>
