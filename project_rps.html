@@ -10,6 +10,10 @@
 
 <body>
     <h1>ROCK PAPER SCISSOR</h1>
+    <button id="rock">ROCK</button>
+    <button id="paper">PAPER</button>
+    <button id="scissors">SCISSORS</button>
+    <div id="score"></div>
 </body>
 <script>
     function getComputerChoice() {
@@ -63,23 +67,50 @@
 
     function game() {
         let wins = 0, losses = 0;
-        for (let i = 0; i < 5; i++) {
-            let plaSel = prompt("enter choice");
-            let comSel = getComputerChoice();
-            let msg = playRound(plaSel, comSel);
-            if (msg.charAt(4) == "W") {
+
+        let msg;
+        let buttons = document.querySelectorAll('button');
+        let numberOfRounds = 0;
+        buttons.forEach(button => button.addEventListener('click', () => {
+            let compSel = getComputerChoice();
+            msg = playRound(button.id, compSel);
+            if (msg.charAt(4) === "W") {
                 wins++;
             }
-            else if (msg.charAt(4) == "L") {
+            else if (msg.charAt(4) === "L") {
                 losses++;
             }
-            console.log(msg);
-        }
-        console.log("wins=" + wins);
-        console.log("losses=" + losses);
+            let score = document.querySelector('#score');
+            score.innerHTML=msg + '<br>' + 'wins = ' + wins + '<br>' + 'losses = ' + losses;
+            numberOfRounds++;
+
+            console.log(numberOfRounds);
+            if(numberOfRounds>=5){
+                if(wins>losses){
+                    score.innerHTML = 'You won the game';
+                }
+                else if(losses>wins){
+                    score.innerHTML = 'You Lost the game';
+                }
+                else{
+                    score.innerHTML = 'DRAW';
+                }
+
+                numberOfRounds=0;
+                wins=0;
+                losses=0;
+            }
+
+        }));
+
+
     }
 
     game();
+
+
+
+
 
 
 
